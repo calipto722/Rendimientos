@@ -97,7 +97,10 @@
                 selectArticulo.appendChild(option);
             });
         }
-
+        function formatearFecha(fecha) {
+            const partes = fecha.split('-');
+            return `${partes[2]}/${partes[1]}/${partes[0].slice(-2)}`;
+        }
         function filtrarArticulos() {
             console.log('Inicio de la función filtrarArticulos.');
 
@@ -140,9 +143,10 @@
         }
 
         function enviarDatos() {
-            const formulario = document.getElementById('formulario');
+       const formulario = document.getElementById('formulario');
+            const fecha = document.getElementById('fecha').value;
             const datos = new FormData(formulario);
-
+            datos.set('fecha', formatearFecha(fecha));
             fetch('https://script.google.com/macros/s/AKfycbw4SN9tujfHEaFiLp3_Jew9oCEDqJzyVtk7KM2aUWE7KNVETsCoe5Hg1uVO0qnlecjpaQ/exec', {
                 method: 'POST',
                 body: datos
