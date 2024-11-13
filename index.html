@@ -7,6 +7,7 @@
         body {
             font-family: Arial, sans-serif;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -20,8 +21,9 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            width: 70%;
             text-align: center;
+            font-size: 1.2em;
         }
 
         h1 {
@@ -151,8 +153,9 @@
         window.onload = cargarArticulos;
     </script>
 </head>
+
 <body>
-   
+   <h1>Formulario de Producción</h1>
     <form id="formulario">
         <label for="fecha">Fecha:</label>
         <input type="date" id="fecha" name="fecha" required><br>
