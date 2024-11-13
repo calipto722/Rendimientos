@@ -143,10 +143,14 @@
         }
 
         function enviarDatos() {
-       const formulario = document.getElementById('formulario');
+           const formulario = document.getElementById('formulario');
             const fecha = document.getElementById('fecha').value;
             const datos = new FormData(formulario);
+            const articulocompleto = document.getElementById('articulo').value;
+            const articulo = articulocompleto.split(' ')[0].trim();
             datos.set('fecha', formatearFecha(fecha));
+            datos.set('articulo', articulo);
+            
             fetch('https://script.google.com/macros/s/AKfycbw4SN9tujfHEaFiLp3_Jew9oCEDqJzyVtk7KM2aUWE7KNVETsCoe5Hg1uVO0qnlecjpaQ/exec', {
                 method: 'POST',
                 body: datos
