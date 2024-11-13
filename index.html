@@ -83,8 +83,13 @@
 
         function mostrarArticulos(lista) {
             const selectArticulo = document.getElementById('articulo');
-            selectArticulo.innerHTML = '<option value="" disabled selected>Selecciona un artículo</option>'; // Limpiar el combo box
-
+            if(lista.length === 0){
+                selectArticulo.innerHTML = '<option value="" disabled selected>No se encontraron artículos</option>';
+                return;
+            }else{
+                selectArticulo.innerHTML = '<option value="" disabled selected>Selecciona un artículo</option>'; // Limpiar el combo box
+            }
+            
             lista.forEach(articulo => {
                 const option = document.createElement('option');
                 option.value = articulo;
