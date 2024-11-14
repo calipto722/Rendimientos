@@ -75,7 +75,7 @@
         let articulos = []; // Variable global para almacenar los artículos originales
         let articulosFiltrados = []; // Variable global para almacenar los artículos filtrados
         async function cargarArticulos() {
-            const response = await fetch('https://script.google.com/macros/s/AKfycbxlNVz1i53Xe2IyB0Aq49PShHSpm-t3CV5-CB3GKD9JUY78GsPZUjE9OPA_ilkAd-kj7Q/exec'); // Reemplaza con la URL de tu Web App
+            const response = await fetch('https://script.google.com/macros/s/AKfycby9hKMpFkzzK50X5K7KB77L0N5MohjCnAKyEg2TeU6HJ9Rjp7YSyP-XkrojFuD4DvKriA/exec'); // Reemplaza con la URL de tu Web App
             articulos = await response.json();
             console.log('Artículos cargados:', articulos);
             mostrarArticulos(articulos); // Cargar todos los artículos inicialmente
@@ -151,7 +151,7 @@
             datos.set('fecha', formatearFecha(fecha));
             datos.set('articulo', articulo);
             
-            fetch('https://script.google.com/macros/s/AKfycbxlNVz1i53Xe2IyB0Aq49PShHSpm-t3CV5-CB3GKD9JUY78GsPZUjE9OPA_ilkAd-kj7Q/exec ', {
+            fetch('https://script.google.com/macros/s/AKfycby9hKMpFkzzK50X5K7KB77L0N5MohjCnAKyEg2TeU6HJ9Rjp7YSyP-XkrojFuD4DvKriA/exec', {
                 method: 'POST',
                 body: datos
             })
