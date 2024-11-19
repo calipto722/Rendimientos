@@ -74,13 +74,35 @@
     <script>
         let articulos = []; // Variable global para almacenar los artículos originales
         let articulosFiltrados = []; // Variable global para almacenar los artículos filtrados
+        let operarios = []; // Variable global para almacenar los operarios originales
         async function cargarArticulos() {
-            const response = await fetch('https://script.google.com/macros/s/AKfycby9hKMpFkzzK50X5K7KB77L0N5MohjCnAKyEg2TeU6HJ9Rjp7YSyP-XkrojFuD4DvKriA/exec'); // Reemplaza con la URL de tu Web App
+            const response = await fetch('https://script.google.com/macros/s/AKfycbyXZ9QdaOZbHifAc-nR00y86U73KSTNbAX0tP7NdBt8ZKR4XuQUXQu8dHEBNb1f_Yb8LA/exec?function=getArticulos'); // Reemplaza con la URL de tu Web App
             articulos = await response.json();
             console.log('Artículos cargados:', articulos);
             mostrarArticulos(articulos); // Cargar todos los artículos inicialmente
         }
-
+        async function cargarOperarios() {
+            const response = await fetch('https://script.google.com/macros/s/AKfycbyXZ9QdaOZbHifAc-nR00y86U73KSTNbAX0tP7NdBt8ZKR4XuQUXQu8dHEBNb1f_Yb8LA/exec?function=getOperarios'); // Reemplaza con la URL de tu Web App
+            operarios = await response.json();
+            console.log('Operarios cargados:', operarios);
+            mostrarOperarios(operarios);
+        }
+        function mostrarOperarios(lista) {
+            const selectOperrario = document.getElementById('operario');
+            if(lista.length === 0){
+                selectOperrario.innerHTML = '<option value="" disabled selected>No se encontraron Operarios</option>';
+                return;
+            }else{
+                selectOperrario.innerHTML = '<option value="" disabled selected>Selecciona un Operario</option>'; // Limpiar el combo box
+            }
+            
+            lista.forEach(operario => {
+                const option = document.createElement('option');
+                option.value = operario;
+                option.textContent = operario;
+                selectOperrario.appendChild(option);
+            });
+        }
         function mostrarArticulos(lista) {
             const selectArticulo = document.getElementById('articulo');
             if(lista.length === 0){
@@ -162,8 +184,12 @@
             })
             .catch(error => console.error('Error:', error));
         }
+        function cargarDatos() {
+            cargarArticulos();
+            cargarOperarios();
 
-        window.onload = cargarArticulos;
+        }
+        window.onload = cargarDatos;
     </script>
 </head>
 
@@ -183,8 +209,9 @@
         </select><br>
 
         <label for="operario">Operario:</label>
-        <input type="text" id="operario" name="operario" required><br>
-
+        <select id="operario" name="operario" required>
+        <option value="" disabled selected>Selecciona un operario</option>
+        </select><br>
         <label for="hora_inicio">Hora Inicio:</label>
         <input type="time" id="hora_inicio" name="hora_inicio" required><br>
 
